@@ -1,0 +1,28 @@
+﻿{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"webSiteName": {
+			"type": "string",
+			"minLength": 1
+		},
+		"hostingPlanName": {
+			"type": "string",
+			"minLength": 1
+		}
+	},
+	"resources": [
+		{
+			"apiVersion": "2015-08-01",
+			"name": "[parameters('webSiteName')]",
+			"type": "Microsoft.Web/sites",
+			"location": "[resourceGroup().location]",
+			"dependsOn": [
+				"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+			],
+			"properties": {
+				"serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
+			}
+		}
+	]
+}
