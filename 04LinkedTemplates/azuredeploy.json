@@ -42,7 +42,7 @@
 	"resources": [
 		{
 			"apiVersion": "2015-01-01",
-			"name": "linkedTemplate",
+			"name": "linkedTemplateWebFarm",
 			"type": "Microsoft.Resources/deployments",
 			"properties": {
 				"mode": "Incremental",
@@ -65,7 +65,7 @@
 		},
 		{
 			"apiVersion": "2015-01-01",
-			"name": "linkedTemplate",
+			"name": "linkedTemplateWebApp",
 			"type": "Microsoft.Resources/deployments",
 			"properties": {
 				"mode": "Incremental",
