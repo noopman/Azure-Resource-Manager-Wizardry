@@ -4,7 +4,7 @@
 	"parameters": {
 		"webSiteName": {
 			"type": "string",
-			"minLength": 1,
+			"minLength": 1
 		},
 		"skuName": {
 			"type": "string",
@@ -47,7 +47,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "https://github.com/noopman/Azure-Resource-Manager-Wizardry/blob/master/04LinkedTemplates/WebFarm.json",
+					"uri": "[uri(deployment().properties.templateLink.uri, 'WebFarm.json')] ",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -70,7 +70,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "https://github.com/noopman/Azure-Resource-Manager-Wizardry/blob/master/04LinkedTemplates/WebApp.json",
+					"uri": "[uri(deployment().properties.templateLink.uri, 'WebApp.json')] ",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {

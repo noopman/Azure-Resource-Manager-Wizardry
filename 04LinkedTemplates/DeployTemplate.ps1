@@ -1,8 +1,8 @@
 ﻿Set-Location "$demosPath\LinkedTemplates"
 
 $resourceGroupName = "ARMTrainingLinked"
-$templateFile = ".\azuredeploy.json"
-$templateParametersFile = ".\azuredeploy.parameters.json"
+$templateUri = "https://raw.githubusercontent.com/noopman/Azure-Resource-Manager-Wizardry/master/04LinkedTemplates/azuredeploy.json"
+$templateParametersUri = "https://raw.githubusercontent.com/noopman/Azure-Resource-Manager-Wizardry/master/04LinkedTemplates/azuredeploy.parameters.json"
 
 New-AzureRmResourceGroup `
     -Name $resourceGroupName `
@@ -11,8 +11,8 @@ New-AzureRmResourceGroup `
 
 New-AzureRmResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
-    -TemplateFile $templateFile `
-    -Verbose -Force
-    -TemplateParameterFile $templateParametersFile
-
+    -TemplateUri $templateUri `
+    -Verbose -Force `
+    -TemplateParameterUri $templateParametersUri
+          
 RemoveResourceGroup
