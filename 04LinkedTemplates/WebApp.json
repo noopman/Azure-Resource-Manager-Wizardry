@@ -17,9 +17,6 @@
 			"name": "[parameters('webSiteName')]",
 			"type": "Microsoft.Web/sites",
 			"location": "[resourceGroup().location]",
-			"dependsOn": [
-				"[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
-			],
 			"properties": {
 				"serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
 			}

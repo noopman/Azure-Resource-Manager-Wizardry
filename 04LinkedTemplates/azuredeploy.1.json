@@ -42,7 +42,7 @@
 	"resources": [
 		{
 			"apiVersion": "2015-01-01",
-			"name": "variables('hostingPlanName')",
+			"name": "linkedTemplateWebFarm",
 			"type": "Microsoft.Resources/deployments",
 			"properties": {
 				"mode": "Incremental",
@@ -62,18 +62,6 @@
 					}
 				}
 			}
-		},
-		{
-			"apiVersion": "2015-08-01",
-			"name": "[parameters('webSiteName')]",
-			"type": "Microsoft.Web/sites",
-			"location": "[resourceGroup().location]",
-			"properties": {
-				"serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', variables('hostingPlanName'))]"
-			]
 		}
 	]
 }
