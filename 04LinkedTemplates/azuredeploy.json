@@ -69,11 +69,8 @@
 			"type": "Microsoft.Web/sites",
 			"location": "[resourceGroup().location]",
 			"properties": {
-				"serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', variables('hostingPlanName'))]"
-			]
+				"serverFarmId": "[reference(variables('hostingPlanName'))]"
+			}
 		}
 	]
 }
