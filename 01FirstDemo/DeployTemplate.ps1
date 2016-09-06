@@ -1,6 +1,6 @@
 ﻿Set-Location "$demosPath\FirstDemo"
 
-code
+code .
 
 $resourceGroupName = 'ARMTrainingBasicDemo'
 $templateFile = '.\azuredeploy.json'
