@@ -19,8 +19,8 @@ Login-AzureRmAccount -Credential $azureCredential
 
 #Get-AzureRmSubscription
 
-#$subscriptionName = 'Martensson Consulting (BizSpark3)'
 $subscriptionName = '{your subscription name}'
+$subscriptionName = 'Martensson Consulting (BizSpark3)'
 
 $resourceGroupName = 'ARMTraining'
 $storageAccountName = 'armtraining42'
