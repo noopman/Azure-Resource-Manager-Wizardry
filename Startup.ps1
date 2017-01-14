@@ -19,30 +19,32 @@ Login-AzureRmAccount -Credential $azureCredential
 
 #Get-AzureRmSubscription
 
+#$subscriptionName = 'Martensson Consulting BizSpark1'
+#$subscriptionName = 'Martensson Consulting BizSpark2'
+#$subscriptionName = 'Martensson Consulting BizSpark3'
+#$subscriptionName = 'Martensson Consulting BizSpark4'
+#$subscriptionName = 'Martensson Consulting BizSpark5'
 $subscriptionName = '{your subscription name}'
-$subscriptionName = 'Martensson Consulting (BizSpark3)'
 
-$resourceGroupName = 'ARMTraining'
-$storageAccountName = 'armtraining42'
-
-$locationName = 'westeurope'
-Get-AzureRmLocation
-$location = Get-AzureRmLocation | Where -Property Location -Match $locationName
-$locationName = ""
-
-#Get-AzureRmSubscription -SubscriptionName $subscriptionName | Select-AzureRmSubscription
-
+# Subscription context
 $subscription = Get-AzureRmSubscription -SubscriptionName $subscriptionName
-
-$subscriptionName = ""
-
 Select-AzureRmSubscription -SubscriptionId $subscription.SubscriptionId
 
+# Location context
+$locationName = 'uksouth'
+$location = Get-AzureRmLocation | Where -Property Location -Match $locationName
+
+# Resource Group context
+#$resourceGroupName = 'ARMTraining'
+$resourceGroupName = '{your resource group name}'
 New-AzureRmResourceGroup `
     -Name $resourceGroupName `
     -Location $location.Location `
     -Verbose -Force
+Get-AzureRmResourceGroup
 
+#$storageAccountName = 'armtraining'
+$storageAccountName = '{your storage account name}'
 # Conditionally create storage account
 if ((Get-AzureRmStorageAccount | where { $_.StorageAccountName -Match $storageAccountName }).Count -eq 0) {
     New-AzureRmStorageAccount `
@@ -55,13 +57,14 @@ if ((Get-AzureRmStorageAccount | where { $_.StorageAccountName -Match $storageAc
 
 Set-AzureRmCurrentStorageAccount -ResourceGroupName $resourceGroupName -StorageAccountName $storageAccountName
 
-Write-Host "Initiate Azure CLI!"
-azure
-
 cls
-Write-Host "The following is the context that we are working under now!"
+Write-Host "Azure context:"
 $azureRmContext = (Get-AzureRmContext) -as [Microsoft.Azure.Commands.Profile.Models.PSAzureContext]
 $azureRmContext
+
+# Azure Cross Platform Command Line Interface aka. Azure xPlat-CLI
+Write-Host "Initiate Azure CLI!"
+azure
 
 function RemoveResourceGroup()
 {
